@@ -7,7 +7,8 @@ import { Layout } from "@/components/layout"
 import { buttonVariants } from "@/components/ui/button"
 import { Square } from "@/components/square" 
 import { AspectRatio } from "@/components/ui/aspect-ratio"
-
+import { Status } from "@/components/status"
+import RecentlyListened from "@/components/spotify"
 
 export default function IndexPage() {
   const jobs = [
@@ -41,39 +42,39 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div>
-          <Image
-            className="rounded-full"
-            src="/images/profile.jpg" 
-            height={144}
-            width={144}
-            alt="me!"
-          />
-        </div>
-        <div>
-          <h2 className="mt-10 scroll-m-20 pb-4 text-xl font-semibold tracking-tight transition-colors first:mt-0">
-            Work Experience
-          </h2>
-          <div className="relative flex space-x-4">
-            {
-              jobs.map((job,i) => <Square key={i} props={job}/>)
-            }
-          </div>
-        </div>
-      </main>
-      <div className="absolute bottom-8 left-8 flex gap-x-1 items-center">
-        <div className="w-[30px]">
-          <AspectRatio ratio={1 / 1}>
+        <div className="grid sm:grid-cols-3 grid-cols-1 gap-y-4 sm:gap-8">
+          <div className="border border-gray-300 rounded-xl p-6 content-between">
             <Image
-            alt="apple-fitness-workout"
-            src="/images/fitness.gif"
-            fill
-            className="rounded-3xl object-cover"
+              className="rounded-full mb-12"
+              src="/images/profile.jpg" 
+              height={75}
+              width={75}
+              alt="me!"
             />
-          </AspectRatio>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight lg:text-4xl flex mb-4">Hi, I'm Josh! <span className="wave">👋</span></h1>
+              <h2 className="font-semibold text-lg">Computer Science <span className="text-rose-700 font-semibold">| USC Viterbi</span></h2>
+            </div>
+          </div>
+          <div className="col-span-2">
+            <h2 className="mt-10 scroll-m-20 pb-4 text-xl font-semibold tracking-tight transition-colors first:mt-0">
+              Work Experience
+            </h2>
+            <div className="relative flex space-x-4">
+              {
+                jobs.map((job,i) => <Square key={i} props={job}/>)
+              }
+            </div>
+            <div className="w-40">
+              <RecentlyListened />
+            </div>
+          </div>
+          <div>
         </div>
-        <span className="font-semibold text-xs italic">Currently working out</span>
-      </div>
+        </div>
+        <Status />
+      </main>
+      
     </Layout>
   )
 }
